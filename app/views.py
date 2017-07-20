@@ -57,7 +57,7 @@ def Contextual():
     
     #if the start flag is set to yes then clear the session
     if(request.values.get("start").lower() == 'yes'):
-    	session.clear()
+        session.clear()
 
     sumSessionCounter()
 
@@ -66,8 +66,8 @@ def Contextual():
     
     #If session's utterance dictionary is not set then initialize it otherwise append the new utterance to list of utterances
     try:
-    	utterance_dict = session['utterance_dict']
-    	utterance_dict['utterances'].append(temp_dict)
+        utterance_dict = session['utterance_dict']
+        utterance_dict['utterances'].append(temp_dict)
         session['utterance_dict'] = utterance_dict
     except KeyError:
         session['utterance_dict'] = { "utterances": [ temp_dict ] }
