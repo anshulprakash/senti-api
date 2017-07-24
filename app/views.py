@@ -85,7 +85,7 @@ def Sentiment():
     
     text = request.values.get("text")
     # create TextBlob object of passed tweet text
-    analysis = TextBlob(self.clean_tweet(text))
+    analysis = TextBlob(text)
     # set sentiment
     if analysis.sentiment.polarity > 0:
         return 'positive'
