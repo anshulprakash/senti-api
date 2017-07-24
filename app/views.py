@@ -3,6 +3,7 @@ from flask import Flask, request, session
 import json
 import tone
 import cust_engagement
+from textblob import TextBlob
 
 
 @app.route('/')
@@ -73,5 +74,24 @@ def Contextual():
         session['utterance_dict'] = { "utterances": [ temp_dict ] }
 
     return cust_engagement.getUtteranceAnalysis(session['utterance_dict'])
+
+'''
+This end-point URL will be used to get sentiment for a text
+@param: text
+
+'''
+@app.route('/Sentiment', methods=['POST'])
+def Sentiment():
+    
+    text = request.values.get("text")
+    # create TextBlob object of passed tweet text
+    analysis = TextBlob(self.clean_tweet(text))
+    # set sentiment
+    if analysis.sentiment.polarity > 0:
+        return 'positive'
+    elif analysis.sentiment.polarity == 0:
+        return 'neutral'
+    else:
+        return 'negative'
 
 
