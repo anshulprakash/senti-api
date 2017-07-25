@@ -15,11 +15,8 @@ def getSentiment(text):
 
 	# Determine sentiment
 	postData = json.dumps({"documents":[{"id":"1", "language":'en', "text":text}]}).encode('utf-8')
-	start = time()
-	response = requests.post(sentimentUri, data = postData, headers = headers)
-	end = time()
 
-	timeTaken = end - start
+	response = requests.post(sentimentUri, data = postData, headers = headers)
 
 	#request = Request(sentimentUri, postData, headers)
 	

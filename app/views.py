@@ -85,7 +85,7 @@ This end-point URL will be used to get sentiment for a text
 def Sentiment():
     
     text = request.values.get("text")
-    score = getSentiment(text)
+    score = sentiment.getSentiment(text)
     data = {"score" : score}
 
     return json.dumps(data)
