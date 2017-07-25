@@ -3,6 +3,7 @@ from flask import Flask, request, session
 import json
 import tone
 import cust_engagement
+import sentiment
 from textblob import TextBlob
 
 
@@ -84,14 +85,9 @@ This end-point URL will be used to get sentiment for a text
 def Sentiment():
     
     text = request.values.get("text")
-    # create TextBlob object of passed tweet text
-    analysis = TextBlob(text)
-    # set sentiment
-    if analysis.sentiment.polarity > 0:
-        return 'positive'
-    elif analysis.sentiment.polarity == 0:
-        return 'neutral'
-    else:
-        return 'negative'
+    score = getSentiment(text)
+    data = {"score" : score}
+
+    return json.dumps(data)
 
 
